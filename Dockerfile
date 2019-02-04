@@ -2,9 +2,11 @@ FROM ubuntu:18.04
 
 RUN apt-get update -y && \
     apt-get install -y python3-pip
+RUN mkdir /wfgeneral
+ADD . /wfgneral/
 
 # copy requirements.txt first to use Docker cache
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /wfgeneral/requirements.txt
 
 WORKDIR /wfgeneral
 
