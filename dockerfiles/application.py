@@ -1,7 +1,8 @@
 '''application.py - Flask code for the Word Finder General app'''
-from flask import Flask, render_template, request
 import random
 import sys
+
+from flask import Flask, render_template, request
 
 COUNT = 2
 MINLEN = 3
@@ -15,7 +16,7 @@ global_init_flag = False  # set this to True when app has initialized
 
 def load_words():
     '''load words of matching length from a file into a list of lists by word length'''
-    wordlist = [[] for i in range(30)]
+    wordlist = [[] for _ in range(30)]
     try:
         with open(WORDFILE) as wf:
             for word in wf:
@@ -119,7 +120,8 @@ def findword():
     if len(word) > 2 and len(word) < 30 and '?' in word:
         resultlist = wordfind(word)
     else:
-        resultlist = ['Error: Partial word of between 3 and 29 letters and question marks required.']
+        resultlist = [
+            'Error: Partial word of between 3 and 29 letters and question marks required.']
     return render_template('results.html', result=resultlist)
 
 
